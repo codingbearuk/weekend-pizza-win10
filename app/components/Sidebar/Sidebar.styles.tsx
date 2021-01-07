@@ -9,7 +9,6 @@ export const Container = styled.div<{ isMaximized: boolean }>`
       p.isMaximized ? colors.grey : colors.semiTransparentGrey};
   }
   @media screen and (prefers-color-scheme: dark) {
-    background: ${(p) =>
-      p.isMaximized ? colors.black : colors.transparentBlack};
+    background: ${(p) => colors.transparentBlack};
   }
 `;

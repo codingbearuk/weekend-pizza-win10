@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import colors from '../constants/colors';
-import electron from 'electron';
+import electron, { remote } from 'electron';
 import { TitleBar } from 'react-desktop/windows';
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 
 import Sidebar from '../components/Sidebar';
 
-const Layout = styled.div<{ isMaximized: boolean; isOpen: boolean }>`
+interface LayoutType {
+  isMaximized: boolean;
+  isOpen: boolean;
+}
+
+const Layout = styled.div<LayoutType>`
   display: grid;
   transition-duration: 0.3s;
   grid-template-columns: ${({ isOpen, isMaximized }) =>
@@ -16,6 +21,21 @@ const Layout = styled.div<{ isMaximized: boolean; isOpen: boolean }>`
   border-radius: ${(p) => (p.isMaximized ? '0px' : '3px')};
   overflow: hidden;
   position: relative;
+
+  ::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(./shot.jpg);
+    background-position: center;
+    background-size: 160% 160%;
+    opacity: 0.9;
+    filter: blur(15px);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
 
   section {
     @media screen and (prefers-color-scheme: light) {

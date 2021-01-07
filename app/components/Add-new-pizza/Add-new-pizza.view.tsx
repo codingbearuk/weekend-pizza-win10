@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput } from 'react-desktop/windows';
+import { TextInput, Button, ProgressCircle } from 'react-desktop/windows';
 
 import { Container, Content, Image } from './Add-new-pizza.styles';
 import { yellow, black, white } from '../../constants/colors';
@@ -15,6 +15,11 @@ interface ViewType {
   handlers: {
     handleImageSelectContainer: VoidFunction;
     handleSelectImage: (selectedImage: string) => void;
+  };
+  refs: {
+    name: React.Ref<HTMLDivElement>;
+    ingredients: React.Ref<HTMLDivElement>;
+    price: React.Ref<HTMLDivElement>;
   };
 }
 
@@ -43,12 +48,34 @@ const View: React.FunctionComponent<ViewType> = (p) => {
           label="Pizza name"
           placeholder="my new pizza"
           color={yellow}
+          ref={p.refs.name}
           theme={
             window.matchMedia('(prefers-color-scheme:dark)').matches
               ? 'dark'
               : 'light'
           }
         />
+        <TextInput
+          label="Ingredients"
+          placeholder="use coma to separate ingredients"
+          color={yellow}
+          theme={
+            window.matchMedia('(prefers-color-scheme:dark)').matches
+              ? 'dark'
+              : 'light'
+          }
+        />
+        <TextInput
+          label="Price"
+          placeholder="enter pizza price"
+          color={yellow}
+          theme={
+            window.matchMedia('(prefers-color-scheme:dark)').matches
+              ? 'dark'
+              : 'light'
+          }
+        />
+        <Button>Submit</Button>
       </Content>
     </Container>
   );

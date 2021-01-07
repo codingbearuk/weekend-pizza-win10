@@ -11,13 +11,18 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, nativeTheme } from 'electron';
+import { app, BrowserWindow, protocol } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+import screenshot from 'screenshot-desktop';
 
 app.commandLine.appendSwitch('enable-transparent-visuals');
 // app.commandLine.appendSwitch('disable-gpu');
+
+screenshot({ filename: `${__dirname}/shot.jpg` }).then((img) => {
+  console.log(img);
+});
 
 export default class AppUpdater {
   constructor() {
@@ -78,18 +83,23 @@ const createWindow = async () => {
     title: 'My weekend pizza app',
     frame: false,
     transparent: true,
-    vibrancy: 'menu',
+    vibrancy: 'appearance-based',
     resizable: false,
     webPreferences:
       (process.env.NODE_ENV === 'development' ||
         process.env.E2E_BUILD === 'true') &&
       process.env.ERB_SECURE !== 'true'
         ? {
+            devTools: false,
             nodeIntegration: true,
-            // devTools: false,
+            nodeIntegrationInWorker: true,
+            webSecurity: false,
           }
         : {
             preload: path.join(__dirname, 'dist/renderer.prod.js'),
+            nodeIntegration: true,
+            nodeIntegrationInWorker: true,
+            webSecurity: false,
           },
   });
 
@@ -105,6 +115,13 @@ const createWindow = async () => {
       mainWindow.show();
       mainWindow.focus();
     }
+  });
+
+  app.whenReady().then(() => {
+    protocol.registerFileProtocol('file', (request, callback) => {
+      const pathname = request.url.replace('file:///', '');
+      callback(pathname);
+    });
   });
 
   mainWindow.on('closed', () => {

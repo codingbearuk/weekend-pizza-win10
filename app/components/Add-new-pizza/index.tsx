@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 
 import View from './Add-new-pizza.view';
 import GET from '../../utils/api-comunication/get';
@@ -9,6 +9,12 @@ const Home: React.FunctionComponent = (p) => {
   const [isSelectImageContainerOpen, setSelectImageContainerOpen] = useState<
     boolean
   >(false);
+
+  const [nameRef, ingredientsRef, priceRef] = [
+    useRef(null),
+    useRef(null),
+    useRef(null),
+  ];
 
   const handleImageSelectContainer = useCallback(() => {
     setSelectImageContainerOpen(!isSelectImageContainerOpen);
@@ -31,6 +37,7 @@ const Home: React.FunctionComponent = (p) => {
   return View({
     state: { selectetImage, isSelectImageContainerOpen, images },
     handlers: { handleImageSelectContainer, handleSelectImage },
+    refs: { name: nameRef, ingredients: ingredientsRef, price: priceRef },
   });
 };
 
