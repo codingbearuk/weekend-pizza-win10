@@ -2,7 +2,11 @@ import key from './key';
 import fetch from 'node-fetch';
 
 export interface POST {
-  (query: string, body: object): Promise<object>;
+  (query: string, body: object): Promise<
+    {
+      status: string;
+    } & { [prop: string]: any }
+  >;
 }
 
 const post: POST = async (query, body) => {

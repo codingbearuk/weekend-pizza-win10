@@ -90,7 +90,7 @@ const createWindow = async () => {
         process.env.E2E_BUILD === 'true') &&
       process.env.ERB_SECURE !== 'true'
         ? {
-            devTools: false,
+            // devTools: false,
             nodeIntegration: true,
             nodeIntegrationInWorker: true,
             webSecurity: false,

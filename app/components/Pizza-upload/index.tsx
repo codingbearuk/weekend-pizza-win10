@@ -52,6 +52,7 @@ const Home: React.FunctionComponent = (p) => {
       if (data.status === 500) throw new Error('failed to upload');
       const res = await data.json();
       if (res.status === 'ok') {
+        alert('your image has been uploaded');
         setLoading(false);
         setDroped(false);
         setFileToUpload(null);

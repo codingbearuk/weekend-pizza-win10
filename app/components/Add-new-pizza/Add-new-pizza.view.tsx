@@ -11,10 +11,12 @@ interface ViewType {
     selectetImage: string | null;
     isSelectImageContainerOpen: boolean;
     images: string[];
+    isLoading: boolean;
   };
   handlers: {
     handleImageSelectContainer: VoidFunction;
     handleSelectImage: (selectedImage: string) => void;
+    handleSubmitButton: () => void;
   };
   refs: {
     name: React.Ref<HTMLDivElement>;
@@ -59,6 +61,7 @@ const View: React.FunctionComponent<ViewType> = (p) => {
           label="Ingredients"
           placeholder="use coma to separate ingredients"
           color={yellow}
+          ref={p.refs.ingredients}
           theme={
             window.matchMedia('(prefers-color-scheme:dark)').matches
               ? 'dark'
@@ -69,13 +72,18 @@ const View: React.FunctionComponent<ViewType> = (p) => {
           label="Price"
           placeholder="enter pizza price"
           color={yellow}
+          ref={p.refs.price}
           theme={
             window.matchMedia('(prefers-color-scheme:dark)').matches
               ? 'dark'
               : 'light'
           }
         />
-        <Button>Submit</Button>
+        {p.state.isLoading ? (
+          <ProgressCircle color={yellow} size={40} />
+        ) : (
+          <Button onClick={p.handlers.handleSubmitButton}>Submit</Button>
+        )}
       </Content>
     </Container>
   );
