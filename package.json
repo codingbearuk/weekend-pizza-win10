@@ -97,10 +97,9 @@
       "./resources/**"
     ],
     "publish": {
-      "provider": "coding-bear",
-      "owner": "Kamil Pieczyk",
-      "repo": "my-weekend-pizza-windows-10-app",
-      "private": false
+      "provider": "github",
+      "owner": "electron-react-boilerplate",
+      "repo": "electron-react-boilerplate"
     }
   },
   "repository": {

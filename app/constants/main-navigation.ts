@@ -30,6 +30,11 @@ const mainNavigation: Array<NavItem> = [
     iconName: 'CloudUpload',
     route: '/sauce-upload',
   },
+  {
+    title: 'Remove pizzas and sauces',
+    iconName: 'Delete',
+    route: '/remove',
+  },
 ];
 
 export default mainNavigation;

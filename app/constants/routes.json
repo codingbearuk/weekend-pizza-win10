@@ -3,5 +3,6 @@
   "PIZZA": "/add-pizza",
   "SAUCE": "/add-sauce",
   "PIZZAUPLOAD": "/pizza-upload",
-  "SAUCEUPLOAD": "/sauce-upload"
+  "SAUCEUPLOAD": "/sauce-upload",
+  "REMOVE": "/remove"
 }

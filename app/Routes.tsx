@@ -8,6 +8,7 @@ import PizzaUpload from './components/Pizza-upload';
 import SauceUpload from './components/Sauce-upload';
 import Pizza from './components/Add-new-pizza';
 import Sauce from './components/Add-new-sauce';
+import Remove from './components/Remove';
 
 export default function Routes() {
   return (
@@ -17,6 +18,7 @@ export default function Routes() {
         <Route path={routes.SAUCEUPLOAD} component={SauceUpload} />
         <Route path={routes.PIZZA} component={Pizza} />
         <Route path={routes.SAUCE} component={Sauce} />
+        <Route path={routes.REMOVE} component={Remove} />
         <Route exact path={routes.HOME} component={Home} />
       </Switch>
     </App>

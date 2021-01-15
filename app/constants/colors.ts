@@ -4,6 +4,7 @@ export const transparentWhiteMaximized: string = 'rgba(222, 224, 227, 0.9)';
 export const white: string = 'rgb(255, 255, 255)';
 export const shadow: string = 'rgba(164, 169, 178, 1)';
 export const grey: string = 'rgba(201, 201, 201, 1)';
+export const darkGrey: string = 'rgba(38, 38, 38, 1)';
 export const semiTransparentGrey: string = 'rgba(201, 201, 201, 0.9)';
 export const yellow = '#F6A95F';
 export const red = '#E34042';
@@ -25,6 +26,7 @@ export default {
   inactive,
   success,
   grey,
+  darkGrey,
   semiTransparentGrey,
   fullTransparentBlack,
   fullTransparentWhite,
