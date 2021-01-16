@@ -10,9 +10,8 @@ export const Container: StyledComponent<'div', any, {}> = styled.div`
   background-color: ${colors.grey};
   border-radius: 5px;
   margin-right: 10px;
-  :last-child {
-    margin-right: 0;
-  }
+  margin-bottom: 10px;
+  cursor: default;
 
   @media screen and (prefers-color-scheme: dark) {
     background-color: ${colors.darkGrey};

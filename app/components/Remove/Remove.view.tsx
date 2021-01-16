@@ -8,6 +8,9 @@ import Element from './element';
 
 interface RomoveTypes {
   state: { isLoading: boolean; sauces: SauceType[]; pizzas: PizzaType[] };
+  handlers: {
+    openNewWindow: (options: { type: 'sauce' | 'pizza'; id: string }) => void;
+  };
 }
 
 const Remove: React.FunctionComponent<RomoveTypes> = (p) => {
@@ -26,6 +29,9 @@ const Remove: React.FunctionComponent<RomoveTypes> = (p) => {
                 name={pizza.name}
                 id={pizza._id}
                 ingrediends={pizza.ingredients}
+                onClick={() =>
+                  p.handlers.openNewWindow({ type: 'pizza', id: pizza._id })
+                }
               />
             ))}
           </section>
@@ -37,6 +43,9 @@ const Remove: React.FunctionComponent<RomoveTypes> = (p) => {
                 name={sauce.name}
                 id={sauce._id}
                 description={sauce.description}
+                onClick={() =>
+                  p.handlers.openNewWindow({ type: 'sauce', id: sauce._id })
+                }
               />
             ))}
           </section>

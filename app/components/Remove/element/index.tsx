@@ -9,11 +9,15 @@ interface ElementType {
   id: string;
   ingrediends?: string[];
   description?: string;
+  onClick: () => void;
 }
 
 const Element: React.FunctionComponent<ElementType> = (p) => {
   return (
-    <Container title={p.ingrediends ? p.ingrediends.join(',') : p.description}>
+    <Container
+      title={p.ingrediends ? p.ingrediends.join(',') : p.description}
+      onClick={p.onClick}
+    >
       <Icon iconName="Delete" />
       <Separator width={10} />
       {p.name}
