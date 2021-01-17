@@ -80,7 +80,7 @@ const createWindow = async () => {
     width: 1024,
     height: 650,
     icon: getAssetPath('icon.png'),
-    title: 'My weekend pizza app',
+    title: 'My weekend pizza',
     frame: false,
     transparent: true,
     resizable: false,

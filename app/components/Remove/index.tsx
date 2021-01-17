@@ -31,12 +31,14 @@ const Remove: React.FunctionComponent = (p) => {
         type === 'pizza' ? await getPizzas() : await getSauces();
         await remote.dialog.showMessageBox(mainWindow, {
           type: 'info',
+          title: 'my weekend pizza',
           message: `Your ${type} has been removed`,
         });
         setLoading(false);
       } else {
         await remote.dialog.showMessageBox(mainWindow, {
           type: 'error',
+          title: 'my weekend pizza',
           message: 'connection error',
         });
         setLoading(false);
@@ -49,6 +51,7 @@ const Remove: React.FunctionComponent = (p) => {
     async (options: { type: 'sauce' | 'pizza'; id: string }) => {
       const dialog = await remote.dialog.showMessageBox(mainWindow, {
         type: 'warning',
+        title: 'my weekend pizza',
         message: 'Do you want to delete?',
         buttons: ['yes', 'no'],
       });

@@ -35,22 +35,26 @@ const Home: React.FunctionComponent = (p) => {
     if (nameRef.current.value === '') {
       setLoading(false);
       await remote.dialog.showMessageBox(mainWindow, {
+        title: 'my weekend pizza',
         message: 'enter pizza name',
       });
     } else if (ingredientsRef.current.value === '') {
       setLoading(false);
       await remote.dialog.showMessageBox(mainWindow, {
+        title: 'my weekend pizza',
         message: 'enter pizza ingredinents',
       });
     } else if (!parseInt(priceRef.current.value)) {
       setLoading(false);
       await remote.dialog.showMessageBox(mainWindow, {
+        title: 'my weekend pizza',
         message: 'price must be a number',
       });
     } else if (selectetImage === '') {
       setLoading(false);
       console.log(selectetImage);
       await remote.dialog.showMessageBox(mainWindow, {
+        title: 'my weekend pizza',
         message: 'the pizza image must be setted',
       });
     } else {
@@ -63,6 +67,7 @@ const Home: React.FunctionComponent = (p) => {
         });
         if (data.status === 'ok') {
           await remote.dialog.showMessageBox(mainWindow, {
+            title: 'my weekend pizza',
             message: `added new pizza ${nameRef.current.value}`,
           });
           setSelectedImage('');
@@ -76,6 +81,7 @@ const Home: React.FunctionComponent = (p) => {
           );
       } catch (err) {
         await remote.dialog.showMessageBox(mainWindow, {
+          title: 'my weekend pizza',
           message: err,
         });
         setLoading(false);
