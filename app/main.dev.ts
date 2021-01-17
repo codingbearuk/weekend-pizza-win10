@@ -83,7 +83,6 @@ const createWindow = async () => {
     title: 'My weekend pizza app',
     frame: false,
     transparent: true,
-    vibrancy: 'appearance-based',
     resizable: false,
     webPreferences:
       (process.env.NODE_ENV === 'development' ||

@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { remote } from 'electron';
 
 import View from './Add-new-sauce.view';
 import GET from '../../utils/api-comunication/get';
@@ -18,6 +19,8 @@ const Home: React.FunctionComponent = (p) => {
     useRef(null),
   ];
 
+  const mainWindow = remote.BrowserWindow.getAllWindows[0];
+
   const handleImageSelectContainer = useCallback(() => {
     setSelectImageContainerOpen(!isSelectImageContainerOpen);
   }, [isSelectImageContainerOpen]);
@@ -31,16 +34,24 @@ const Home: React.FunctionComponent = (p) => {
     setLoading(true);
     if (nameRef.current.value === '') {
       setLoading(false);
-      alert('enter sauce name');
+      await remote.dialog.showMessageBox(mainWindow, {
+        message: 'enter sauce name',
+      });
     } else if (ingredientsRef.current.value === '') {
       setLoading(false);
-      alert('enter sauce description');
+      await remote.dialog.showMessageBox(mainWindow, {
+        message: 'enter sauce description',
+      });
     } else if (!parseInt(priceRef.current.value)) {
       setLoading(false);
-      alert('price must be a number');
+      await remote.dialog.showMessageBox(mainWindow, {
+        message: 'price must be a number',
+      });
     } else if (!selectetImage) {
       setLoading(false);
-      alert('the sauce image must be setted');
+      await remote.dialog.showMessageBox(mainWindow, {
+        message: 'the sauce image must be setted',
+      });
     } else {
       try {
         const data = await POST('/panel/add-sauce', {
@@ -50,7 +61,9 @@ const Home: React.FunctionComponent = (p) => {
           image: selectetImage,
         });
         if (data.status === 'ok') {
-          alert(`added new sauce ${nameRef.current.value}`);
+          await remote.dialog.showMessageBox(mainWindow, {
+            message: `added new sauce ${nameRef.current.value}`,
+          });
           setSelectedImage(null);
           nameRef.current.value = '';
           ingredientsRef.current.value = '';
@@ -61,11 +74,13 @@ const Home: React.FunctionComponent = (p) => {
             'could not add new sauce - check your internet connection'
           );
       } catch (err) {
-        alert(err);
+        await remote.dialog.showMessageBox(mainWindow, {
+          message: err,
+        });
         setLoading(false);
       }
     }
-  }, [nameRef, ingredientsRef, priceRef]);
+  }, [nameRef, ingredientsRef, priceRef, selectetImage]);
 
   const getImages = useCallback(async () => {
     const data: any = await GET('/images');

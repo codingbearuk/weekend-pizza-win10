@@ -27,9 +27,9 @@ const Layout = styled.div<LayoutType>`
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url(./shot.jpg);
+    /* background-image: url(./shot.jpg);
     background-position: center;
-    background-size: 160% 160%;
+    background-size: 160% 160%; */
     opacity: 0.9;
     filter: blur(15px);
     width: 100%;
