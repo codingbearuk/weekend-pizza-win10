@@ -11,6 +11,11 @@ const mainNavigation: Array<NavItem> = [
     route: '/',
   },
   {
+    title: 'Messages',
+    iconName: 'SkypeMessage',
+    route: '/messages',
+  },
+  {
     title: 'Add new pizza',
     iconName: 'StockDown',
     route: '/add-pizza',

@@ -89,12 +89,13 @@ const createWindow = async () => {
         process.env.E2E_BUILD === 'true') &&
       process.env.ERB_SECURE !== 'true'
         ? {
-            // devTools: false,
+            experimentalFeatures: true,
             nodeIntegration: true,
             nodeIntegrationInWorker: true,
             webSecurity: false,
           }
         : {
+            experimentalFeatures: true,
             preload: path.join(__dirname, 'dist/renderer.prod.js'),
             nodeIntegration: true,
             nodeIntegrationInWorker: true,

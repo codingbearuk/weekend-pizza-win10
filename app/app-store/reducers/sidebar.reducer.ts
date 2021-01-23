@@ -5,7 +5,7 @@ interface State {
 }
 
 const initial: State = {
-  isOpen: true,
+  isOpen: false,
 };
 
 const reducer: Reducer = (state: State = initial, action) => {
