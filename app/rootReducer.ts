@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import { History } from 'history';
-import sidebar from 'app-store/reducers/sidebar.reducer';
+
+import sidebar from './app-store/reducers/sidebar.reducer';
 // eslint-disable-next-line import/no-cycle
 
 function createRootReducer(history: History) {

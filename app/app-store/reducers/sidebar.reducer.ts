@@ -1,4 +1,4 @@
-import { Reducer } from 'app-store';
+import { Reducer } from '../index';
 
 interface State {
   isOpen: boolean;

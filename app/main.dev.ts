@@ -11,11 +11,20 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, protocol } from 'electron';
+import {
+  app,
+  BrowserWindow,
+  protocol,
+  globalShortcut,
+  Menu,
+  MenuItem,
+  remote,
+} from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import screenshot from 'screenshot-desktop';
+import contextMenu from 'electron-context-menu';
 
 app.commandLine.appendSwitch('enable-transparent-visuals');
 // app.commandLine.appendSwitch('disable-gpu');
@@ -115,6 +124,19 @@ const createWindow = async () => {
       mainWindow.show();
       mainWindow.focus();
     }
+  });
+
+  globalShortcut.register('CommandOrControl+R', () => {
+    mainWindow.reload();
+  });
+
+  contextMenu({
+    prepend: (defaultActions, params, browserWindow) => [
+      {
+        label: 'copy',
+        role: 'copy',
+      },
+    ],
   });
 
   app.whenReady().then(() => {
