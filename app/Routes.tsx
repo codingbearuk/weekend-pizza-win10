@@ -10,6 +10,7 @@ import Pizza from './components/Add-new-pizza';
 import Sauce from './components/Add-new-sauce';
 import Remove from './components/Remove';
 import Messages from './components/Messages';
+import Archive from './components/OrderArchive';
 
 export default function Routes() {
   return (
@@ -21,6 +22,7 @@ export default function Routes() {
         <Route path={routes.SAUCE} component={Sauce} />
         <Route path={routes.REMOVE} component={Remove} />
         <Route path={routes.MESSAGES} component={Messages} />
+        <Route path={routes.ARCHIVE} component={Archive} />
         <Route exact path={routes.HOME} component={Home} />
       </Switch>
     </App>

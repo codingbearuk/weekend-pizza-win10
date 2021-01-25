@@ -95,6 +95,7 @@ const Order: React.FunctionComponent<OrderType> = (p) => {
     cart: p.cart,
     handlers: { handleOpenOrder, handleEditStatus, handleArchiveOrder },
     statusBtnLoading,
+    archive: p.archive,
   });
 };
 

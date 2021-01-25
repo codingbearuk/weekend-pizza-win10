@@ -11,6 +11,7 @@ export interface CartItem {
 }
 
 export interface Order {
+  archive?: boolean;
   _id: string;
   order_id: string;
   cart: Array<CartItem>;

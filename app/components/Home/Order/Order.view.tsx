@@ -13,6 +13,7 @@ import Separator from '../../UI/Separator';
 import { CartItem } from '../Home.types';
 
 interface ViewType {
+  archive?: boolean;
   orderID: string;
   isNew: boolean;
   orderStatus: string;
@@ -51,7 +52,9 @@ const View: React.FunctionComponent<ViewType> = (p) => {
     >
       {p.isNew && <NewLabel>NEW</NewLabel>}
       <h2 onClick={p.handlers.handleOpenOrder}>
-        ORDER ID: {p.orderID}
+        {`ORDER ID: ${p.orderID} adress: ${p.address.city.toUpperCase()} ${
+          p.address.address
+        } ${p.address.postcode}`}
         <Separator width={10} />
         <Icon iconName={!p.isOpen ? 'ChevronDown' : 'ChevronUp'} />
       </h2>
@@ -102,19 +105,21 @@ const View: React.FunctionComponent<ViewType> = (p) => {
               </p>
             ))}
           </CartList>
-          <ActionButtonsContainer>
-            {p.isStatusButtonActive && (
-              <>
-                <Button push onClick={p.handlers.handleEditStatus}>
-                  {p.statusBtnLoading ? <ProgressCircle /> : p.buttonText}
-                </Button>
-                <Separator width={10} />
-              </>
-            )}
-            <Button push onClick={p.handlers.handleArchiveOrder}>
-              archive order
-            </Button>
-          </ActionButtonsContainer>
+          {p.archive ? null : (
+            <ActionButtonsContainer>
+              {p.isStatusButtonActive && (
+                <>
+                  <Button push onClick={p.handlers.handleEditStatus}>
+                    {p.statusBtnLoading ? <ProgressCircle /> : p.buttonText}
+                  </Button>
+                  <Separator width={10} />
+                </>
+              )}
+              <Button push onClick={p.handlers.handleArchiveOrder}>
+                archive order
+              </Button>
+            </ActionButtonsContainer>
+          )}
         </OrderDetails>
       )}
     </Container>

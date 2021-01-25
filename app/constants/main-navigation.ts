@@ -40,6 +40,11 @@ const mainNavigation: Array<NavItem> = [
     iconName: 'Delete',
     route: '/remove',
   },
+  {
+    title: 'Order archive',
+    iconName: 'Archive',
+    route: '/archive',
+  },
 ];
 
 export default mainNavigation;

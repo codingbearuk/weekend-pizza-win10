@@ -8,6 +8,8 @@ const Home: React.FunctionComponent = (p) => {
   const [isLoading, setLoading] = useState<boolean>(true);
   const [orders, setOrders] = useState<[] | Array<Order>>([]);
 
+  let getOrdersInterval: number;
+
   const getOrdersList = useCallback(() => {
     const socket = io('http://vps-a3dcf2e1.vps.ovh.net:3030/');
 
@@ -19,6 +21,10 @@ const Home: React.FunctionComponent = (p) => {
         setOrders(orders);
         setLoading(false);
       });
+      getOrdersInterval = setInterval(() => {
+        console.warn('getting order list');
+        socket.emit('get-orders');
+      }, 50000);
       document.addEventListener('edit-status-success', () => {
         socket.emit('get-orders');
       });
@@ -27,6 +33,10 @@ const Home: React.FunctionComponent = (p) => {
 
   useEffect(() => {
     getOrdersList();
+    return () => {
+      console.log(getOrdersInterval);
+      clearInterval(getOrdersInterval);
+    };
   }, []);
 
   return View({
